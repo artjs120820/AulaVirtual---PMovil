@@ -1,3 +1,4 @@
+import 'package:aula2/components/courses_card.dart';
 import 'package:aula2/configs/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           appBar: AppBar(title: Text('Aula Virtual - PM 2024-2')),
           //<body/>....
-          body: SingleChildScrollView(
+          body: const SingleChildScrollView(
               child: Padding(
                   padding: EdgeInsets.all(15),
                   child: Column(
@@ -30,62 +31,23 @@ class MyApp extends StatelessWidget {
                             fontSize: 23, //Tamaño de letra
                             fontWeight: FontWeight.w800, //Negrita
                           )),
-                      Card(
-                        color: AppColors.backgroundColor,
-                        shadowColor: AppColors.secondaryColor,
-                        child: Column(children: [
-                          Image.network(
-                              'https://i.ytimg.com/vi/Gi8dTDuRCOk/maxresdefault.jpg'),
-                          Padding(
-                              padding: EdgeInsets.only(
-                                  left: 10,
-                                  bottom: 20,
-                                  right: 10,
-                                  top: 20), //PADDING PERSONALIZADO
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('600054',
-                                      style: TextStyle(
-                                        color: AppColors.secondaryColor,
-                                      )),
-                                  Text('Programación Movil - 872',
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold)),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Activo',
-                                        style: TextStyle(color: Colors.green),
-                                      ),
-                                      Container(
-                                          margin: EdgeInsets.only(left: 10),
-                                          padding: EdgeInsets.only(
-                                              left: 10,
-                                              top: 2,
-                                              bottom: 2,
-                                              right: 10),
-                                          color: const Color.fromARGB(
-                                              255, 0, 0, 0),
-                                          child: Text(
-                                            'Derecho Penal',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          )),
-                                    ],
-                                  ),
-                                  Container(
-                                    height: 2.0,
-                                    color: Colors.grey,
-                                    margin:
-                                        EdgeInsets.symmetric(vertical: 20.0),
-                                  ),
-                                  Text('Carlos Tevez',
-                                      style: TextStyle(color: Colors.black)),
-                                ],
-                              ))
-                        ]),
+                      CoursesCard(
+                        cursonombre: 'Ingeniería de datos',
+                        estadocurso: 'Finalizado',
+                        tagtext: 'Critico',
+                        tagcolor: Color.fromARGB(255, 113, 13, 243),
+                        docente: 'Pepe Valdivia',
+                        image:
+                            'https://fotos.perfil.com/2021/03/08/0308husky-1138538.jpg',
+                      ),
+                      CoursesCard(
+                        cursonombre: 'Literatura',
+                        estadocurso: 'En curso',
+                        tagtext: 'Creeper',
+                        tagcolor: Color.fromARGB(255, 100, 247, 3),
+                        docente: 'Joako creeper',
+                        image:
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbGeXe_SWRXu1Azl71YqRHEjIa6KgjkpI1fw&s',
                       )
                     ],
                   ))
