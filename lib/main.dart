@@ -3,6 +3,11 @@ import 'package:aula2/configs/colors.dart';
 import 'package:aula2/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
+//Rutas a las paginas
+import 'pages/sing_in/sing_in_page.dart';
+import 'pages/sing_up/sing_up_page.dart';
+import 'pages/reset/reset_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -14,16 +19,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo', //<title/>
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true, //<style/>
-      ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('Aula Virtual - PM 2024-2')),
-        body: HomePage()//<body/>....
-      ),
-    );
+        title: 'Flutter Demo', //<title/>
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true, //<style/>
+        ),
+        // home: Scaffold(
+        //   appBar: AppBar(title: Text('Aula Virtual - PM 2024-2')),
+        //   body: HomePage()//<body/>....
+        // ),
+        initialRoute: '/sing_in',
+        routes: {
+          '/home': (context) => (Scaffold(
+                appBar: AppBar(title: Text('Aula Virtual - PM 2024-2')),
+                body: HomePage(), //<body/>....
+              )),
+          '/sing_in': (context) => SingInPage(),
+          '/sing_up': (context) => SingUpPage(),
+          '/reset': (context) => ResetPage(),
+        });
   }
 }
 
