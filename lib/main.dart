@@ -1,5 +1,6 @@
 import 'package:aula2/components/courses_card.dart';
 import 'package:aula2/configs/colors.dart';
+import 'package:aula2/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,9 +20,15 @@ class MyApp extends StatelessWidget {
         useMaterial3: true, //<style/>
       ),
       home: Scaffold(
-          appBar: AppBar(title: Text('Aula Virtual - PM 2024-2')),
-          //<body/>....
-          body: const SingleChildScrollView(
+        appBar: AppBar(title: Text('Aula Virtual - PM 2024-2')),
+        body: HomePage()//<body/>....
+      ),
+    );
+  }
+}
+
+/*
+body: const SingleChildScrollView(
               child: Padding(
                   padding: EdgeInsets.all(15),
                   child: Column(
@@ -52,7 +59,6 @@ class MyApp extends StatelessWidget {
                     ],
                   ))
               //
-              )),
-    );
-  }
-}
+              )
+
+ */
