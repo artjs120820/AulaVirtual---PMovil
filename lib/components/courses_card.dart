@@ -9,6 +9,7 @@ class CoursesCard extends StatelessWidget {
   final String tagtext;
   final Color tagcolor;
   final String docente;
+  final String codecurso;
 
   //Constructor del Widget "TAG" que recibe el texto
   const CoursesCard({
@@ -19,6 +20,7 @@ class CoursesCard extends StatelessWidget {
     required this.tagtext,
     required this.estadocurso,
     required this.docente,
+    required this.codecurso,
   }) : super(key: key);
 
   @override
@@ -39,7 +41,7 @@ class CoursesCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('600054',
+                      Text(codecurso,
                           style: TextStyle(
                             color: AppColors.secondaryColor,
                           )),

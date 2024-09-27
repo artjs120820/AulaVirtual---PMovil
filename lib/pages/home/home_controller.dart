@@ -7,6 +7,7 @@ class HomeController extends GetxController {
   var secciones = <SeccionDocenteCursos>[].obs;
   void listarSecciones() async {
     secciones.value = await seccionService.fetchAll();
+    print(secciones.value);
   }
 
 
