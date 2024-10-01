@@ -12,7 +12,7 @@ class SeccionService {
     secciones = data
         .map((map) => SeccionDocenteCursos.fromMap(map as Map<String, dynamic>))
         .toList();
-    print(secciones);
+    // print(secciones);
     return secciones;
   }
 }

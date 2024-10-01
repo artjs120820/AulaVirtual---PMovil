@@ -1,4 +1,5 @@
 import 'package:aula2/models/seccion_docente_cursos.dart';
+import 'package:aula2/models/usuario.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../components/courses_card.dart';
@@ -6,20 +7,13 @@ import 'home_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomeController control = Get.put(HomeController());
-
-  Widget _buildBody(BuildContext context) {
-    return SafeArea(child: Text('Templage Page'));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    control.listarSecciones();
+  Widget _buildBody(BuildContext context, Usuario usuario) {
     return SingleChildScrollView(
         child: Padding(
             padding: EdgeInsets.all(15),
             child: Column(
               children: [
-                Text('Mis cursos',
+                Text('Mis cursos ${usuario.correo} - ${usuario.idUsuario}',
                     style: TextStyle(
                       fontSize: 23, //Tamaño de letra
                       fontWeight: FontWeight.w800, //Negrita
@@ -40,7 +34,8 @@ class HomePage extends StatelessWidget {
                           codecurso: seccion.seccionCodigo.toString(),
                           //tagcolor: Color.fromARGB(255, 100, 247, 3),
                           docente: seccion.docenteNombre,
-                          image: seccion.cursoImagen,                        );
+                          image: seccion.cursoImagen,
+                        );
                       });
                 }),
 
@@ -66,5 +61,14 @@ class HomePage extends StatelessWidget {
             ))
         //
         );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Map<String, dynamic> args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    Usuario usuario = Usuario.fromMap(args);
+    control.listarSecciones();
+    return _buildBody(context, usuario);
   }
 }

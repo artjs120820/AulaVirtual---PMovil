@@ -12,7 +12,44 @@ class SingInPage extends StatelessWidget {
             padding: EdgeInsets.all(20),
             child: Column(
               children: [
-                Text('Bienvenido Perrito'),
+                Text('Bienvenido Perrito',
+                    style:
+                        TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                TextField(
+                  controller: control.txtUsuario,
+                  decoration: InputDecoration(
+                      labelText: 'Usuario',
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0)),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                TextField(
+                  obscureText: true,
+                  controller: control.txtContrasenia,
+                  decoration: InputDecoration(
+                      labelText: 'Contraseña',
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0)),
+                ),
+                Obx(() {
+                  return (control.mensaje.value == '')
+                      ? SizedBox(
+                          height: 10,
+                        )
+                      : Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(control.mensaje.value)
+                          ],
+                        );
+                }),
+                SizedBox(
+                  height: 15,
+                ),
                 LargeButton(
                   title: 'Ingresar',
                   onPressed: () {
