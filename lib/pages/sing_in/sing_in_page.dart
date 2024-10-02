@@ -43,7 +43,11 @@ class SingInPage extends StatelessWidget {
                             SizedBox(
                               height: 5,
                             ),
-                            Text(control.mensaje.value)
+                            Text(control.mensaje.value,
+                                style: TextStyle(
+                                    color: (control.hayError.value)
+                                        ? Colors.red
+                                        : Colors.green)),
                           ],
                         );
                 }),

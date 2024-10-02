@@ -5,70 +5,110 @@ import 'package:get/get.dart';
 import '../../components/courses_card.dart';
 import 'home_controller.dart';
 
-class HomePage extends StatelessWidget {
-  HomeController control = Get.put(HomeController());
-  Widget _buildBody(BuildContext context, Usuario usuario) {
-    return SingleChildScrollView(
-        child: Padding(
-            padding: EdgeInsets.all(15),
-            child: Column(
-              children: [
-                Text('Mis cursos ${usuario.correo} - ${usuario.idUsuario}',
-                    style: TextStyle(
-                      fontSize: 23, //Tamaño de letra
-                      fontWeight: FontWeight.w800, //Negrita
-                    )),
-                Obx(() {
-                  return ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: control.secciones.value.length,
-                      itemBuilder: (context, index) {
-                        SeccionDocenteCursos seccion =
-                            control.secciones.value[index];
-                        print(seccion);
-                        return CoursesCard(
-                          cursonombre: seccion.cursoNombre,
-                          estadocurso: 'Activo',
-                          tagtext: seccion.diploma,
-                          codecurso: seccion.seccionCodigo.toString(),
-                          //tagcolor: Color.fromARGB(255, 100, 247, 3),
-                          docente: seccion.docenteNombre,
-                          image: seccion.cursoImagen,
-                        );
-                      });
-                }),
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-                // CoursesCard(
-                //   cursonombre: 'Ingeniería de datos',
-                //   estadocurso: 'Finalizado',
-                //   tagtext: 'Critico',
-                //   tagcolor: Color.fromARGB(255, 113, 13, 243),
-                //   docente: 'Pepe Valdivia',
-                //   image:
-                //       'https://fotos.perfil.com/2021/03/08/0308husky-1138538.jpg',
-                // ),
-                // CoursesCard(
-                //   cursonombre: 'Literatura',
-                //   estadocurso: 'En curso',
-                //   tagtext: 'Creeper',
-                //   tagcolor: Color.fromARGB(255, 100, 247, 3),
-                //   docente: 'Joako creeper',
-                //   image:
-                //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbGeXe_SWRXu1Azl71YqRHEjIa6KgjkpI1fw&s',
-                // )
-              ],
-            ))
-        //
-        );
+class _HomePageState extends State<HomePage> {
+  HomeController control = Get.put(HomeController());
+  int _selectedIndex = 0;
+  late Widget _body;
+  Usuario? usuario;
+
+  @override
+  void initState() {
+    super.initState();
+    _body = _getBody(_selectedIndex);
+  }
+
+  Widget _getBody(int index) {
+    switch (index) {
+      case 0:
+        return _bodyPestana1();
+      case 1:
+        return Center(child: Text('Página 2'));
+      case 2:
+        return Center(child: Text('Página 3'));
+      default:
+        return Center(child: Text('Página 1'));
+    }
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      _body = _getBody(index);
+    });
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+      body: _body, //_body(context, usuario),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Mis Cursos'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notifications), label: 'Notificaciones'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today_outlined), label: 'Calendario')
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+      ),
+    ));
+  }
+
+  Widget _bodyPestana1() {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.all(15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Obx(() {
+              return Text(
+                'Mis cursos ${control.usuario.value.correo} - ${control.usuario.value.idUsuario}',
+                style: TextStyle(
+                  fontSize: 23, // Tamaño de letra
+                  fontWeight: FontWeight.w800, // Negrita
+                ),
+              );
+            }),
+            Obx(() {
+              return ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: control.secciones.value.length,
+                itemBuilder: (context, index) {
+                  SeccionDocenteCursos seccion = control.secciones.value[index];
+                  return CoursesCard(
+                    cursonombre: seccion.cursoNombre,
+                    estadocurso: 'Activo',
+                    tagtext: seccion.diploma,
+                    codecurso: seccion.seccionCodigo.toString(),
+                    docente: seccion.docenteNombre,
+                    image: seccion.cursoImagen,
+                  );
+                },
+              );
+            }),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final Map<String, dynamic> args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    Usuario usuario = Usuario.fromMap(args);
+    this.usuario = Usuario.fromMap(args);
+    if (this.usuario != null) {
+      control.updateUsuario(this.usuario!);
+    }
     control.listarSecciones();
-    return _buildBody(context, usuario);
+    return _buildBody(context);
   }
 }

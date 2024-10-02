@@ -1,19 +1,20 @@
-/*Promp CHATGPT: quieor una clase en dart llamada "usuario" que tegna como atributos un idUsuario, y un correo en string. incluye los metodo tostring, to json, frommap*/
+/*
+prompt chatgpt: quiero una clase en dart llamada Usuario, que tenga como atributos un idUsuario entero y un correo como String. Adiconalmente, quiero que la clase tenga el metodo toString, toJson y fromMap
+ */
+
 class Usuario {
-  // Atributos de la clase
   int idUsuario;
   String correo;
 
-  // Constructor
   Usuario({required this.idUsuario, required this.correo});
 
-  // Método toString
+  // Método toString para representar la clase como un String
   @override
   String toString() {
     return 'Usuario{idUsuario: $idUsuario, correo: $correo}';
   }
 
-  // Método toJson (convierte el objeto a un mapa JSON)
+  // Método para convertir la instancia a un Map (JSON)
   Map<String, dynamic> toJson() {
     return {
       'idUsuario': idUsuario,
@@ -21,7 +22,7 @@ class Usuario {
     };
   }
 
-  // Método fromMap (crea un objeto Usuario a partir de un mapa)
+  // Método para crear una instancia de Usuario a partir de un Map
   factory Usuario.fromMap(Map<String, dynamic> map) {
     return Usuario(
       idUsuario: map['idUsuario'],
