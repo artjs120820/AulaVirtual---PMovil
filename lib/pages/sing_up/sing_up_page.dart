@@ -17,4 +17,4 @@ class SingUpPage extends StatelessWidget {
       body: _buildBody(context),
     ));
   }
-}
+} 

@@ -1,4 +1,5 @@
 import 'package:aula2/components/courses_card.dart';
+import 'package:aula2/configs/app_theme.dart';
 import 'package:aula2/configs/colors.dart';
 import 'package:aula2/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
@@ -20,14 +21,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Demo', //<title/>
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true, //<style/>
-        ),
-        // home: Scaffold(
-        //   appBar: AppBar(title: Text('Aula Virtual - PM 2024-2')),
-        //   body: HomePage()//<body/>....
+        theme: AppTheme.lightTheme(),
+        darkTheme: AppTheme.darkTheme(),
+        // darkTheme: ThemeData.dark().copyWith(
+        //     primaryColor: Colors.blue,
+        //     inputDecorationTheme: InputDecorationTheme(
+        //         border: OutlineInputBorder(
+        //           borderSide: BorderSide(color: Colors.blue),
+        //         ),
+        //         focusedBorder: OutlineInputBorder(
+        //           borderSide: BorderSide(color: Colors.blueAccent),
+        //         ),
+        //         enabledBorder: OutlineInputBorder(
+        //           borderSide: BorderSide(color: Colors.grey),
+        //         ))),
+        themeMode: ThemeMode.system,
+        // theme: ThemeData(
+        //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        //   useMaterial3: true, //<style/>
         // ),
+        // // home: Scaffold(
+        // //   appBar: AppBar(title: Text('Aula Virtual - PM 2024-2')),
+        // //   body: HomePage()//<body/>....
+        // // ),
         initialRoute: '/sing_in',
         routes: {
           '/home': (context) => (Scaffold(

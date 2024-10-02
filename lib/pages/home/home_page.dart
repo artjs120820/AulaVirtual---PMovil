@@ -68,13 +68,15 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Obx(() {
-              return Text(
-                'Mis cursos ${control.usuario.value.correo} - ${control.usuario.value.idUsuario}',
-                style: TextStyle(
-                  fontSize: 23, // Tamaño de letra
-                  fontWeight: FontWeight.w800, // Negrita
-                ),
-              );
+              return control.usuario.value.idUsuario != 0
+                  ? Text(
+                      'Mis cursos ${control.usuario.value.correo} - ${control.usuario.value.idUsuario}',
+                      style: TextStyle(
+                        fontSize: 23, // Tamaño de letra
+                        fontWeight: FontWeight.w800, // Negrita
+                      ),
+                    )
+                  : Text('data');
             }),
             Obx(() {
               return ListView.builder(

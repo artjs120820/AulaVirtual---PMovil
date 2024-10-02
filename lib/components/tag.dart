@@ -6,8 +6,11 @@ class Tag extends StatelessWidget {
   final Color color;
 
   //Constructor del Widget "TAG" que recibe el texto
-  const Tag({Key? key, required this.text, this.color = Colors.white})
-      : super(key: key);
+  const Tag({
+    Key? key,
+    required this.text,
+    this.color = Colors.white,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class Tag extends StatelessWidget {
             )),
         child: Text(
           text,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: color, fontWeight: FontWeight.bold),
         ));
   }
 }

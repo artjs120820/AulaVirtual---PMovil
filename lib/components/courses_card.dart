@@ -7,20 +7,20 @@ class CoursesCard extends StatelessWidget {
   final String cursonombre;
   final String estadocurso;
   final String tagtext;
-  final Color tagcolor;
   final String docente;
   final String codecurso;
+  final Color tagColor;
 
   //Constructor del Widget "TAG" que recibe el texto
   const CoursesCard({
     Key? key,
     required this.image,
-    this.tagcolor = Colors.white,
     required this.cursonombre,
     required this.tagtext,
     required this.estadocurso,
     required this.docente,
     required this.codecurso,
+    this.tagColor = Colors.white,
   }) : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class CoursesCard extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.only(top: 30),
         child: Card(
-            color: AppColors.backgroundColor,
+            color: AppColors.getBackgroundColor(context),
             shadowColor: AppColors.secondaryColor,
             child: Column(children: [
               Image.network(image),
@@ -57,7 +57,9 @@ class CoursesCard extends StatelessWidget {
                           SizedBox(
                             width: 15,
                           ),
-                          Tag(text: tagtext, color: tagcolor)
+                          Tag(
+                              text: this.tagtext,
+                              color: AppColors.getButtonText(context))
                         ],
                       ),
                       Container(

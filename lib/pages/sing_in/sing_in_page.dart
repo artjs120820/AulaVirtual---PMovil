@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'sing_in_controller.dart';
 import '../../components/large_button.dart';
@@ -12,6 +13,20 @@ class SingInPage extends StatelessWidget {
             padding: EdgeInsets.all(20),
             child: Column(
               children: [
+                Theme.of(context).brightness == Brightness.dark
+                    ? Image.asset('assets/img/splash_icon_dark.png')
+                    : Image.asset('assets/img/splash_icon.png'),
+
+                //EJEMPLO SVG
+                // SvgPicture.asset(
+                //   'assets/svg/logo.svg', // Ruta del SVG
+                //   color: AppColors.getBackgroundColor(
+                //       context), // Cambia el color aquí
+                //   colorBlendMode: BlendMode
+                //       .srcIn, // Asegúrate de que el color se aplique correctamente
+                //   height: 100.0, // Opcional: altura del SVG
+                //   width: 100.0, // Opcional: ancho del SVG
+                // ),
                 Text('Bienvenido Perrito',
                     style:
                         TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
@@ -88,9 +103,11 @@ class SingInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: null,
-      body: _buildBody(context),
-    ));
+            resizeToAvoidBottomInset: false,
+            appBar: null,
+            body: Container(
+              color: Theme.of(context).colorScheme.background,
+              child: _buildBody(context),
+            )));
   }
 }
