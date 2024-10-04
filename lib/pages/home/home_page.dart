@@ -45,7 +45,45 @@ class _HomePageState extends State<HomePage> {
   Widget _buildBody(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: _body, //_body(context, usuario),
+      body: _body,
+      appBar: AppBar(
+        title: Text('Aula Virtual - PM 2024-2'),
+        actions: [
+          PopupMenuButton<String>(
+            icon: Icon(Icons.more_vert), // Ícono de 3 puntos
+            onSelected: (String value) {
+              // Maneja la selección del menú
+              switch (value) {
+                case 'opcion1':
+                  print('Opción 1 seleccionada');
+                  break;
+                case 'opcion2':
+                  print('Opción 2 seleccionada');
+                  break;
+                case 'opcion3':
+                  print('Opción 3 seleccionada');
+                  break;
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem<String>(
+                  value: 'opcion1',
+                  child: Text('Opción 1'),
+                ),
+                PopupMenuItem<String>(
+                  value: 'opcion2',
+                  child: Text('Opción 2'),
+                ),
+                PopupMenuItem<String>(
+                  value: 'opcion3',
+                  child: Text('Opción 3'),
+                ),
+              ];
+            },
+          ),
+        ],
+      ), //_body(context, usuario),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Mis Cursos'),

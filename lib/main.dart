@@ -22,6 +22,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo', //<title/>
         theme: AppTheme.lightTheme(),
+        // theme: ThemeData(
+        //   colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 255, 0, 0)),
+        //   useMaterial3: true,
+        // ),
         darkTheme: AppTheme.darkTheme(),
         // darkTheme: ThemeData.dark().copyWith(
         //     primaryColor: Colors.blue,
@@ -47,7 +51,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/sing_in',
         routes: {
           '/home': (context) => (Scaffold(
-                appBar: AppBar(title: Text('Aula Virtual - PM 2024-2')),
+                appBar: null,
                 body: HomePage(), //<body/>....
               )),
           '/sing_in': (context) => SingInPage(),

@@ -11,7 +11,8 @@ class SingInPage extends StatelessWidget {
     return SafeArea(
         child: Padding(
             padding: EdgeInsets.all(20),
-            child: Column(
+            child: SingleChildScrollView(
+                child: Column(
               children: [
                 Theme.of(context).brightness == Brightness.dark
                     ? Image.asset('assets/img/splash_icon_dark.png')
@@ -96,14 +97,14 @@ class SingInPage extends StatelessWidget {
                   backgroundColor: const Color.fromARGB(255, 180, 228, 240),
                 ),
               ],
-            )));
+            ))));
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-            resizeToAvoidBottomInset: false,
+            resizeToAvoidBottomInset: true,
             appBar: null,
             body: Container(
               color: Theme.of(context).colorScheme.background,

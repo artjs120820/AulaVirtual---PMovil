@@ -1,4 +1,5 @@
 import 'package:aula2/models/usuario.dart';
+import 'package:aula2/pages/home/home_page.dart';
 import 'package:aula2/services/usuario_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,14 @@ class SingInController extends GetxController {
       this.mensaje.value = 'Success: Usuario y contraseña válidos';
       this.hayError.value = false;
       Future.delayed(Duration(seconds: 3), () {
-        Navigator.pushNamed(context, '/home', arguments: usuario.toJson());
+        // Navigator.pushNamed(context, '/home', arguments: usuario.toJson());
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => HomePage(),
+            settings: RouteSettings(arguments: usuario.toJson()),
+          ),
+          (Route<dynamic> route) => false,
+        );
       });
     } else {
       this.hayError.value = true;
